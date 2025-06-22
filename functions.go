@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func saySalam(akhi string) (string, bool) {
 	return "Assalamualaikum " + akhi, akhi != ""
@@ -93,4 +96,14 @@ func main() {
 
 	fmt.Println(formatResult1)
 	fmt.Println(formatResult2)
+
+	anonFuncResult := processText("Bitch", func(s string) string {
+		if s == "" {
+			return ""
+		}
+
+		return string(s[0]) + strings.Repeat("*", len(s)-1)
+	})
+
+	fmt.Println(anonFuncResult)
 }
