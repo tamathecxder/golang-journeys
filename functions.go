@@ -68,6 +68,14 @@ func processText(text string, format TextFormat) string {
 	return text
 }
 
+func factorial(num int) int {
+	if num == 1 {
+		return 1
+	} else {
+		return num * factorial(num-1)
+	}
+}
+
 func main() {
 	akhi1, _ := saySalam("")
 
@@ -106,4 +114,8 @@ func main() {
 	})
 
 	fmt.Println(anonFuncResult)
+
+	fmt.Println("=======")
+
+	fmt.Println(factorial(10))
 }
