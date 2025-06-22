@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	// datatypes
 	var isSundanese = true
 	fmt.Println(isSundanese)
 
@@ -15,11 +16,9 @@ func main() {
 	trxPrice := 120.90
 	fmt.Println(trxPrice)
 
+	// datatype conversion
 	var value32 int32 = 2221
-
 	fmt.Println(value32)
-
 	var value64 int64 = int64(value32)
-
 	fmt.Println(value64)
 }
