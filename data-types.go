@@ -21,4 +21,10 @@ func main() {
 	fmt.Println(value32)
 	var value64 int64 = int64(value32)
 	fmt.Println(value64)
+
+	type postcode string
+
+	var myPostCode postcode = "24364"
+	fmt.Println(myPostCode)
+
 }
