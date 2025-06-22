@@ -21,6 +21,16 @@ func decreaseAll(nums ...int) int {
 	return total
 }
 
+type Person map[string]string
+
+func injectPerson(name string, age string) Person {
+	person := make(Person)
+	person["name"] = name
+	person["age"] = age
+
+	return person
+}
+
 func main() {
 	akhi1, _ := saySalam("")
 
@@ -34,4 +44,8 @@ func main() {
 
 	fmt.Println(decreaseAll(20, 20, 50, 50))
 	fmt.Println(decreaseAll(nums...))
+
+	person := injectPerson
+
+	fmt.Println(person("Ujang", "22"))
 }
