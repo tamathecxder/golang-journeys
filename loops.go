@@ -14,4 +14,6 @@ func main() {
 	for i, v := range status {
 		fmt.Println("i", i, "v", v)
 	}
+
+	// golang support break and continue
 }
