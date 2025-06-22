@@ -31,6 +31,40 @@ func injectPerson(name string, age string) Person {
 	return person
 }
 
+func formatIntoAsterisk(text string) string {
+	length := len(text)
+
+	var result string
+
+	for i := 1; i <= length; i++ {
+		result += "*"
+	}
+
+	firstLetter := string(text[0])
+	decreasedResult := result[1:]
+	result = fmt.Sprintf("%s%s", firstLetter, decreasedResult)
+
+	return result
+}
+
+type TextFormat func(string) string
+
+func processText(text string, format TextFormat) string {
+	badWords := []string{
+		"Fuck",
+		"Bitch",
+		"Asshole",
+	}
+
+	for _, word := range badWords {
+		if text == word {
+			return format(text)
+		}
+	}
+
+	return text
+}
+
 func main() {
 	akhi1, _ := saySalam("")
 
@@ -48,4 +82,15 @@ func main() {
 	person := injectPerson
 
 	fmt.Println(person("Ujang", "22"))
+
+	fmt.Println("=======")
+
+	text1 := "Fuck"
+	text2 := "Genius"
+
+	formatResult1 := processText(text1, formatIntoAsterisk)
+	formatResult2 := processText(text2, formatIntoAsterisk)
+
+	fmt.Println(formatResult1)
+	fmt.Println(formatResult2)
 }
