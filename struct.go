@@ -5,8 +5,12 @@ import (
 	"math/rand"
 )
 
-type User interface {
+type TrackerInterface interface {
 	GetActivityStatus() string
+}
+
+func printStatus(t TrackerInterface) {
+	fmt.Println("Employee Is", t.GetActivityStatus())
 }
 
 type Employee struct {
@@ -54,6 +58,7 @@ func main() {
 
 	e3 := Employee{generateID(), "Ahmad", 290000}
 
-	fmt.Println(e3.GetActivityStatus())
 	fmt.Println(e3.GetSalary())
+
+	printStatus(e1)
 }
