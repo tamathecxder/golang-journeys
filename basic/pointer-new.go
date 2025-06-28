@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -6,7 +6,7 @@ type Ghost struct {
 	Name, Origin string
 }
 
-func main() {
+func Basic_PointerNew() {
 	var gh1 *Ghost = new(Ghost) // new method can be using to create a pointer, but the declarations can be empty or not initialize at first
 	var gh2 *Ghost = gh1
 

@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_Conditions() {
 	if true {
 		fmt.Println("fr")
 	} else {

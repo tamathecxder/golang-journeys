@@ -1,0 +1,27 @@
+package basic
+
+func Basic() {
+	Basic_HelloWorld()
+	Basic_Functions()
+	Basic_AnyEmptyInterface()
+	Basic_Array()
+	Basic_AsteriskOperator()
+	Basic_Conditions()
+	Basic_CustomError()
+	Basic_DataTypes()
+	Basic_ErrorHandling()
+	Basic_Error()
+	Basic_Import()
+	Basic_Loops()
+	Basic_Pointer()
+	Basic_Map()
+	Basic_PointerNew()
+	Basic_Nil()
+	Basic_Operators()
+	Basic_TypeAssertions()
+	Basic_PackageInit()
+	Basic_PointerInMethod()
+	Basic_PointerInParam()
+	Basic_Slices()
+	Basic_Struct()
+}

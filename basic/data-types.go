@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_DataTypes() {
 	// datatypes
 	var isSundanese = true
 	fmt.Println(isSundanese)

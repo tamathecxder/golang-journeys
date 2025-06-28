@@ -1,12 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-type Human struct {
-	Name, Gender, Hobby string
-}
-
-func main() {
+func Basic_Pointer() {
 	// ddefault: pass by value (duplicate the data)
 	// human1 := Human{"Usep Bulukumba", "Male", "Futsal"}
 	// human2 := human1

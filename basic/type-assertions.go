@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -6,7 +6,7 @@ func anything() any {
 	return "OK"
 }
 
-func main() {
+func Basic_TypeAssertions() {
 	data := anything()
 	fmt.Println(data.(string)) // manual
 

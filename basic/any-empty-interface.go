@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -8,6 +8,6 @@ func whatever() any { // or interface{}
 	// return "whaterver"
 }
 
-func main() {
+func Basic_AnyEmptyInterface() {
 	fmt.Println(whatever())
 }

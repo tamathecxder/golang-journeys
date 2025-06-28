@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -6,7 +6,7 @@ type Human struct {
 	Name, Gender, Hobby string
 }
 
-func main() {
+func Basic_AsteriskOperator() {
 	var human1 Human = Human{"Usep Bulukumba", "Male", "Futsal"}
 	var human2 *Human = &human1 // &pointer: pass by reference (pointing to the same data)
 

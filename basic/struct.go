@@ -1,4 +1,4 @@
-package main
+package basic
 
 import (
 	"fmt"
@@ -39,7 +39,7 @@ func generateID() string {
 	return string(id)
 }
 
-func main() {
+func Basic_Struct() {
 	var e1 Employee
 
 	e1.Id = generateID()

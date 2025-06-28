@@ -1,4 +1,4 @@
-package main
+package basic
 
 import (
 	"fmt"
@@ -76,7 +76,7 @@ func factorial(num int) int {
 	}
 }
 
-func main() {
+func Basic_Functions() {
 	akhi1, _ := saySalam("")
 
 	fmt.Println(akhi1)

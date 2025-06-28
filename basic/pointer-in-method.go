@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -21,7 +21,7 @@ func (shawty *Shawty) getShawty() {
 	shawty.Name = shawty.Name + " is a regular girl"
 }
 
-func main() {
+func Basic_PointerInMethod() {
 	urShawty := Shawty{"Nancy"}   // default
 	urShawty2 := Shawty{"Amanda"} // pointer
 

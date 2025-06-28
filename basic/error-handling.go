@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -25,7 +25,7 @@ func initApp() {
 	defer logging()
 }
 
-func main() {
+func Basic_ErrorHandling() {
 	initApp()
 
 	methodWithIssue(true)

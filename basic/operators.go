@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_Operators() {
 	var firstNum = 20
 	var secNum = 10
 	var thirdNum = 0

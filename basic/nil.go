@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -12,7 +12,7 @@ func renderName(name string) map[string]string {
 	}
 }
 
-func main() {
+func Basic_Nil() {
 	name1 := renderName("Agus")
 	name2 := renderName("")
 

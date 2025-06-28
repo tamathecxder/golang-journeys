@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_Slices() {
 	var cities = [4]string{
 		"Cianjur", "Bandung", "Bogor", "Sukabumi",
 	}

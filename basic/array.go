@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_Array() {
 	var names = [2]string{
 		"Asep",
 		"Ahmad",

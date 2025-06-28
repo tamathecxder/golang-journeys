@@ -1,8 +1,8 @@
-package main
+package basic
 
 import "fmt"
 
-func main() {
+func Basic_Map() {
 	biodata := map[string]string{
 		"name": "Agus",
 		"age":  "20",

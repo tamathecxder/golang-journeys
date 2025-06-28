@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -11,7 +11,7 @@ func changeBrandToSamsung(phone *Phone) {
 	fmt.Println(phone)
 }
 
-func main() {
+func Basic_PointerInParam() {
 	ph1 := Phone{}
 	changeBrandToSamsung(&ph1) // it automatically turn this ph1 arg into pointer using & operator
 

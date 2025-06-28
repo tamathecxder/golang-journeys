@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -34,7 +34,7 @@ func GetUser(id string, user *User) (*User, error) {
 	return user, nil
 }
 
-func main() {
+func Basic_CustomError() {
 	mockUser := User{"1", "Admin"}
 
 	user, err := GetUser("2", &mockUser)
