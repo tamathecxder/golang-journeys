@@ -1,7 +1,8 @@
 package main
 
-import "golang-journeys/basic"
+import "golang-journeys/stdlib"
 
 func main() {
-	basic.Basic()
+	// basic.Basic()
+	stdlib.Stdlib()
 }
