@@ -9,5 +9,6 @@ func Stdlib() {
 	// Stdlib_Strconv()
 	// Stdlib_Math()
 	// Stdlib_ContainerList()
-	Stdlib_ContainerRing()
+	// Stdlib_ContainerRing()
+	Stdlib_Sort()
 }
