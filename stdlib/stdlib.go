@@ -11,6 +11,7 @@ func Stdlib() {
 	// Stdlib_ContainerList()
 	// Stdlib_ContainerRing()
 	// Stdlib_Sort()
-	Stdlib_Time()
-	Stdlib_Duration()
+	// Stdlib_Time()
+	// Stdlib_Duration()
+	Stdlib_Regexp()
 }
