@@ -8,5 +8,6 @@ func Stdlib() {
 	// Stdlib_Strings()
 	// Stdlib_Strconv()
 	// Stdlib_Math()
-	Stdlib_ContainerList()
+	// Stdlib_ContainerList()
+	Stdlib_ContainerRing()
 }
