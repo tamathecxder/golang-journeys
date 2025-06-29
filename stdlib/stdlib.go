@@ -7,4 +7,5 @@ func Stdlib() {
 	Stdlib_Flag()
 	Stdlib_Strings()
 	Stdlib_Strconv()
+	Stdlib_Math()
 }
