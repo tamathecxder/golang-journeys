@@ -14,5 +14,6 @@ func Stdlib() {
 	// Stdlib_Time()
 	// Stdlib_Duration()
 	// Stdlib_Regexp()
-	Stdlib_Reflect()
+	// Stdlib_Reflect()
+	Stdlib_Slices()
 }
