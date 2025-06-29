@@ -13,5 +13,6 @@ func Stdlib() {
 	// Stdlib_Sort()
 	// Stdlib_Time()
 	// Stdlib_Duration()
-	Stdlib_Regexp()
+	// Stdlib_Regexp()
+	Stdlib_Reflect()
 }
