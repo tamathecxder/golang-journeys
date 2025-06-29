@@ -5,4 +5,5 @@ func Stdlib() {
 	Stdlib_Errors()
 	Stdlib_OS()
 	Stdlib_Flag()
+	Stdlib_Strings()
 }
