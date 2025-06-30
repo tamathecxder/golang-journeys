@@ -19,6 +19,7 @@ func Stdlib() {
 	// Stdlib_Encoding()
 	// Stdlib_BufioReader()
 	// Stdlib_BufioWriter()
-	Stdlib_CsvReader()
-	Stdlib_CsvWriter()
+	// Stdlib_CsvReader()
+	// Stdlib_CsvWriter()
+	Stdlib_Path()
 }
