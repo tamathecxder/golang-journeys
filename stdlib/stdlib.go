@@ -18,4 +18,5 @@ func Stdlib() {
 	// Stdlib_Slices()
 	// Stdlib_Encoding()
 	Stdlib_BufioReader()
+	Stdlib_BufioWriter()
 }
