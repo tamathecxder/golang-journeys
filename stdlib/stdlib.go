@@ -15,5 +15,6 @@ func Stdlib() {
 	// Stdlib_Duration()
 	// Stdlib_Regexp()
 	// Stdlib_Reflect()
-	Stdlib_Slices()
+	// Stdlib_Slices()
+	Stdlib_Encoding()
 }
