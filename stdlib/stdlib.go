@@ -16,5 +16,6 @@ func Stdlib() {
 	// Stdlib_Regexp()
 	// Stdlib_Reflect()
 	// Stdlib_Slices()
-	Stdlib_Encoding()
+	// Stdlib_Encoding()
+	Stdlib_BufioReader()
 }
