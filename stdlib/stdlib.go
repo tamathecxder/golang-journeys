@@ -17,6 +17,8 @@ func Stdlib() {
 	// Stdlib_Reflect()
 	// Stdlib_Slices()
 	// Stdlib_Encoding()
-	Stdlib_BufioReader()
-	Stdlib_BufioWriter()
+	// Stdlib_BufioReader()
+	// Stdlib_BufioWriter()
+	Stdlib_CsvReader()
+	Stdlib_CsvWriter()
 }
