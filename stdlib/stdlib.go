@@ -21,5 +21,6 @@ func Stdlib() {
 	// Stdlib_BufioWriter()
 	// Stdlib_CsvReader()
 	// Stdlib_CsvWriter()
-	Stdlib_Path()
+	// Stdlib_Path()
+	Stdlib_File()
 }
