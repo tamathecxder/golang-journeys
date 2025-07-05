@@ -6,37 +6,46 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
-// func TestGreetingAsep(t *testing.T) {
-// 	result := Greeting("Asep")
+func TestMain(m *testing.M) {
+	fmt.Println("<BEFORE THE TEST>")
 
-// 	if result != "Hello, Asep" {
-// 		t.Error("Result is not 'Hello, Asep'")
-// 	}
+	m.Run()
 
-// 	fmt.Println("TestGreetingAsep is done.")
-// }
+	fmt.Println("<AFTER THE TEST>")
+}
 
-// func TestGreetingJohn(t *testing.T) {
-// 	result := Greeting("John")
+func TestGreetingAsep(t *testing.T) {
+	result := Greeting("Asep")
 
-// 	if result != "Hello, John" {
-// 		t.Fatal("Result is not 'Hello, John'")
-// 	}
+	if result != "Hello, Asep" {
+		t.Error("Result is not 'Hello, Asep'")
+	}
 
-// 	fmt.Println("TestGreetingJohn is done.")
-// }
+	fmt.Println("TestGreetingAsep is done.")
+}
 
-// func TestGreetingAssert(t *testing.T) {
-// 	assert.Equal(t, "Hello, xAsep", Greeting("Asep"), "The result must be 'Hello, Asep'")
-// 	fmt.Println("TestGreetingAsep is done.")
-// }
+func TestGreetingJohn(t *testing.T) {
+	result := Greeting("John")
 
-// func TestGreetingRequire(t *testing.T) {
-// 	require.Equal(t, "Hello, xJohn", Greeting("John"), "The result must be 'Hello, John'")
-// 	fmt.Println("TestGreetingJohn is done.")
-// }
+	if result != "Hello, John" {
+		t.Fatal("Result is not 'Hello, John'")
+	}
+
+	fmt.Println("TestGreetingJohn is done.")
+}
+
+func TestGreetingAssert(t *testing.T) {
+	assert.Equal(t, "Hello, xAsep", Greeting("Asep"), "The result must be 'Hello, Asep'")
+	fmt.Println("TestGreetingAsep is done.")
+}
+
+func TestGreetingRequire(t *testing.T) {
+	require.Equal(t, "Hello, xJohn", Greeting("John"), "The result must be 'Hello, John'")
+	fmt.Println("TestGreetingJohn is done.")
+}
 
 func TestSkip(t *testing.T) {
 	if runtime.GOOS == "darwin" {
