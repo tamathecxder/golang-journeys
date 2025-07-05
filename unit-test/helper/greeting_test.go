@@ -2,10 +2,10 @@ package helper
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 // func TestGreetingAsep(t *testing.T) {
@@ -28,12 +28,21 @@ import (
 // 	fmt.Println("TestGreetingJohn is done.")
 // }
 
-func TestGreetingAssert(t *testing.T) {
+// func TestGreetingAssert(t *testing.T) {
+// 	assert.Equal(t, "Hello, xAsep", Greeting("Asep"), "The result must be 'Hello, Asep'")
+// 	fmt.Println("TestGreetingAsep is done.")
+// }
+
+// func TestGreetingRequire(t *testing.T) {
+// 	require.Equal(t, "Hello, xJohn", Greeting("John"), "The result must be 'Hello, John'")
+// 	fmt.Println("TestGreetingJohn is done.")
+// }
+
+func TestSkip(t *testing.T) {
+	if runtime.GOOS == "darwin" {
+		t.Skip("Cannot run the test in MacOS")
+	}
+
 	assert.Equal(t, "Hello, xAsep", Greeting("Asep"), "The result must be 'Hello, Asep'")
 	fmt.Println("TestGreetingAsep is done.")
-}
-
-func TestGreetingRequire(t *testing.T) {
-	require.Equal(t, "Hello, xJohn", Greeting("John"), "The result must be 'Hello, John'")
-	fmt.Println("TestGreetingJohn is done.")
 }
