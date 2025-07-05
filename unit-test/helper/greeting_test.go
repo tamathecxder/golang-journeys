@@ -8,7 +8,7 @@ import (
 func TestGreetingAsep(t *testing.T) {
 	result := Greeting("Asep")
 
-	if result != "Hellox, Asep" {
+	if result != "Hello, Asep" {
 		t.Error("Result is not 'Hello, Asep'")
 	}
 
@@ -18,7 +18,7 @@ func TestGreetingAsep(t *testing.T) {
 func TestGreetingJohn(t *testing.T) {
 	result := Greeting("John")
 
-	if result != "Hellox, John" {
+	if result != "Hello, John" {
 		t.Fatal("Result is not 'Hello, John'")
 	}
 
