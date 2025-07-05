@@ -1,11 +1,26 @@
 package helper
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func TestGreeting(t *testing.T) {
+func TestGreetingAsep(t *testing.T) {
 	result := Greeting("Asep")
 
-	if result != "Hello, Asep" {
-		panic("Result is not 'Hello, Asep'")
+	if result != "Hellox, Asep" {
+		t.Error("Result is not 'Hello, Asep'")
 	}
+
+	fmt.Println("TestGreetingAsep is done.")
+}
+
+func TestGreetingJohn(t *testing.T) {
+	result := Greeting("John")
+
+	if result != "Hellox, John" {
+		t.Fatal("Result is not 'Hello, John'")
+	}
+
+	fmt.Println("TestGreetingJohn is done.")
 }
