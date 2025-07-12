@@ -7,11 +7,11 @@ import (
 )
 
 type UserService struct {
-	repository repositories.UserRepository
+	Repository repositories.UserRepository
 }
 
-func (userService UserService) Find(id string) (*entities.User, error) {
-	entity := userService.repository.FindById(id)
+func (userService UserService) Get(id string) (*entities.User, error) {
+	entity := userService.Repository.FindById(id)
 
 	if entity != nil {
 		return entity, nil
