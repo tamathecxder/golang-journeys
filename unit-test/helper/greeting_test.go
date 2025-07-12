@@ -55,3 +55,15 @@ func TestSkip(t *testing.T) {
 	assert.Equal(t, "Hello, xAsep", Greeting("Asep"), "The result must be 'Hello, Asep'")
 	fmt.Println("TestGreetingAsep is done.")
 }
+
+func BenchmarkGreetingAgus(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Greeting("Agus")
+	}
+}
+
+func BenchmarkGreetingAhmad(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Greeting("Ahmad")
+	}
+}
