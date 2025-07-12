@@ -56,6 +56,29 @@ func TestSkip(t *testing.T) {
 	fmt.Println("TestGreetingAsep is done.")
 }
 
+func BenchmarkTableGreetings(b *testing.B) {
+	benchmarks := []struct {
+		Name, Request string
+	}{
+		{
+			Name:    "B_TEST_Anya",
+			Request: "Anya",
+		},
+		{
+			Name:    "B_TEST_Davina",
+			Request: "Davina",
+		},
+	}
+
+	for _, benchmark := range benchmarks {
+		b.Run(benchmark.Name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Greeting(benchmark.Request)
+			}
+		})
+	}
+}
+
 func BenchmarkGreetings(b *testing.B) {
 	b.Run("Agus", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
