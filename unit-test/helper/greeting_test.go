@@ -56,6 +56,20 @@ func TestSkip(t *testing.T) {
 	fmt.Println("TestGreetingAsep is done.")
 }
 
+func BenchmarkGreetings(b *testing.B) {
+	b.Run("Agus", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Greeting("Agus")
+		}
+	})
+
+	b.Run("Suroso", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Greeting("Suroso")
+		}
+	})
+}
+
 func BenchmarkGreetingAgus(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Greeting("Agus")
