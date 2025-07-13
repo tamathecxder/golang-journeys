@@ -53,7 +53,7 @@ func TestInOutChannel(t *testing.T) {
 	time.Sleep(5 * time.Second)
 }
 
-// Channel: Write Only
+// Channel: Write/Set Only
 func setAddress(address string, addrChan chan<- string) {
 	time.Sleep(1 * time.Second)
 
@@ -62,7 +62,25 @@ func setAddress(address string, addrChan chan<- string) {
 	fmt.Println("Address is now set!")
 }
 
+// Channel: Read/Receive Only
 func getAddress(addrChan <-chan string) {
 	address := <-addrChan
 	fmt.Println("Your address: ", address)
+}
+
+func TestBufferedChannel(t *testing.T) {
+	numChan := make(chan int, 2)
+	defer close(numChan)
+
+	numChan <- 1
+	numChan <- 34
+
+	fmt.Println(cap(numChan))
+	fmt.Println(len(numChan))
+
+	fmt.Println(<-numChan)
+	fmt.Println(<-numChan)
+	fmt.Println(<-numChan) // deadlock, overcapaity
+
+	fmt.Println("Buffered channel is running!")
 }
