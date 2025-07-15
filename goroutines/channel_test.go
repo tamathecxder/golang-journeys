@@ -130,6 +130,8 @@ func TestSelectChannel(t *testing.T) {
 		case converted := <-numToStrChan:
 			fmt.Println("CONV RESULT:", converted)
 			counter++
+		default:
+			fmt.Println("Loading...")
 		}
 
 		if counter == len(totalChan) {
