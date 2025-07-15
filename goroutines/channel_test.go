@@ -2,6 +2,7 @@ package goroutines
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -83,4 +84,22 @@ func TestBufferedChannel(t *testing.T) {
 	fmt.Println(<-numChan) // deadlock, overcapaity
 
 	fmt.Println("Buffered channel is running!")
+}
+
+func TestRangeChannel(t *testing.T) {
+	numChan := make(chan string)
+
+	go func() {
+		for i := 1; i < 10; i++ {
+			numChan <- "Data-" + strconv.Itoa(i)
+		}
+
+		close(numChan)
+	}()
+
+	for data := range numChan {
+		fmt.Println("Retrieve:", data)
+	}
+
+	fmt.Println("Complete")
 }
