@@ -69,6 +69,11 @@ func getAddress(addrChan <-chan string) {
 	fmt.Println("Your address: ", address)
 }
 
+func numToString(num int, resultChan chan<- string) {
+	resultChan <- strconv.Itoa(num)
+	fmt.Println("Convert to string successfully!")
+}
+
 func TestBufferedChannel(t *testing.T) {
 	numChan := make(chan int, 2)
 	defer close(numChan)
@@ -102,4 +107,33 @@ func TestRangeChannel(t *testing.T) {
 	}
 
 	fmt.Println("Complete")
+}
+
+func TestSelectChannel(t *testing.T) {
+	numToStrChan := make(chan string)
+	emailChan := make(chan string)
+
+	totalChan := []chan string{numToStrChan, emailChan}
+
+	defer close(numToStrChan)
+	defer close(emailChan)
+
+	go numToString(555666, numToStrChan)
+	go generateEmail("skuyskuy", emailChan)
+
+	counter := 0
+	for {
+		select {
+		case email := <-emailChan:
+			fmt.Println("EMAIL RESULT:", email)
+			counter++
+		case converted := <-numToStrChan:
+			fmt.Println("CONV RESULT:", converted)
+			counter++
+		}
+
+		if counter == len(totalChan) {
+			break
+		}
+	}
 }
