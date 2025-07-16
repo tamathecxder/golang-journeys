@@ -63,3 +63,23 @@ func TestDeadlock(t *testing.T) {
 	fmt.Printf("%s total balance: %s\n", asep.Name, strconv.Itoa(asep.Amount))
 	fmt.Printf("%s total balance: %s\n", ujang.Name, strconv.Itoa(ujang.Amount))
 }
+
+func AsyncCall(group *sync.WaitGroup, result string) {
+	defer group.Done()
+
+	group.Add(1)
+
+	fmt.Println(result)
+}
+
+func TestWaitGroup(t *testing.T) {
+	group := &sync.WaitGroup{}
+
+	for i := 1; i <= 100; i++ {
+		go AsyncCall(group, "This is a counter on process: "+strconv.Itoa(i))
+	}
+
+	group.Wait()
+
+	fmt.Println("The whole process is completed!")
+}
