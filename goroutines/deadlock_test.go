@@ -106,3 +106,39 @@ func TestOnce(t *testing.T) {
 
 	fmt.Println("Total counter:", counter)
 }
+
+func TestPool(t *testing.T) {
+	pool := sync.Pool{
+		New: func() any {
+			return "DEFAULT_VALUE"
+		},
+	}
+	group := sync.WaitGroup{}
+
+	firstStr := "Hello"
+	secondStr := "World"
+
+	pool.Put(&firstStr)
+	pool.Put(&secondStr)
+
+	for range 10 {
+		group.Add(1)
+
+		go func() {
+			res := pool.Get()
+
+			if str, ok := res.(*string); ok {
+				fmt.Println("response:", *str)
+			}
+
+			time.Sleep(10 * time.Second)
+
+			pool.Put(res)
+			group.Done()
+		}()
+	}
+
+	group.Wait()
+
+	fmt.Println("Pool is completed")
+}
