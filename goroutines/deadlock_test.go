@@ -142,3 +142,28 @@ func TestPool(t *testing.T) {
 
 	fmt.Println("Pool is completed")
 }
+
+func TestSyncMap(t *testing.T) {
+	var data sync.Map
+	var group sync.WaitGroup
+
+	for i := 1; i <= 100; i++ {
+		group.Add(1)
+
+		go func(i int) {
+			defer group.Done()
+			data.Store("key-"+strconv.Itoa(i), "value-"+strconv.Itoa(i))
+			fmt.Println("Data stored for key:", "key-"+strconv.Itoa(i))
+		}(i)
+	}
+
+	group.Wait()
+	fmt.Println("SyncMap process is completed")
+	data.Range(func(key, value any) bool {
+		fmt.Printf("Key: %s, Value: %s\n", key, value)
+		return true
+	})
+
+	fmt.Println("All data in SyncMap has been printed")
+	fmt.Println("TestSyncMap completed")
+}
