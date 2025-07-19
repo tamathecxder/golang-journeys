@@ -39,3 +39,33 @@ func TestTimerFunc(t *testing.T) {
 
 	group.Wait()
 }
+
+func TestTicker(t *testing.T) {
+	ticker := time.NewTicker(1 * time.Second)
+
+	go func() {
+		time.Sleep(2 * time.Second)
+
+		ticker.Stop()
+	}()
+
+	for v := range ticker.C {
+		fmt.Println("Value:", v)
+	}
+
+	fmt.Println("Ticker is stopped")
+}
+
+func TestTickOnly(t *testing.T) {
+	tick := time.Tick(1 * time.Second)
+
+	go func() {
+		time.Sleep(2 * time.Second)
+	}()
+
+	for v := range tick {
+		fmt.Println("Value:", v)
+	}
+
+	fmt.Println("Ticker is stopped")
+}
