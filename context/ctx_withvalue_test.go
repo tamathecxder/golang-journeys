@@ -6,6 +6,7 @@ import (
 	"runtime"
 	"sync"
 	"testing"
+	"time"
 )
 
 type key string
@@ -36,7 +37,7 @@ func TestContextWithValue(t *testing.T) {
 	fmt.Println("Sub District", subdistrictCtx.Value("subdistrict"))
 }
 
-func CreateCounter(ctx context.Context, wg *sync.WaitGroup) <-chan int {
+func CreateCounter(ctx context.Context, wg *sync.WaitGroup, withTimeout bool) <-chan int {
 	countChan := make(chan int)
 
 	wg.Add(1)
@@ -53,6 +54,10 @@ func CreateCounter(ctx context.Context, wg *sync.WaitGroup) <-chan int {
 				return
 			case countChan <- counter:
 				counter++
+
+				if withTimeout {
+					time.Sleep(2 * time.Second)
+				}
 			}
 		}
 	}()
@@ -67,7 +72,7 @@ func TestContextWithCancel(t *testing.T) {
 
 	fmt.Println("Total Goroutine", runtime.NumGoroutine())
 
-	total := CreateCounter(counterCtx, &group)
+	total := CreateCounter(counterCtx, &group, false)
 
 	for n := range total {
 		fmt.Println("Current:", n)
@@ -78,6 +83,26 @@ func TestContextWithCancel(t *testing.T) {
 	}
 
 	cancel()
+
+	group.Wait()
+
+	fmt.Println("Total Goroutine", runtime.NumGoroutine())
+}
+
+func TestContextWithTimeout(t *testing.T) {
+	mainCtx := context.Background()
+	counterCtx, cancel := context.WithTimeout(mainCtx, 10*time.Second)
+	group := sync.WaitGroup{}
+
+	defer cancel()
+
+	fmt.Println("Total Goroutine", runtime.NumGoroutine())
+
+	total := CreateCounter(counterCtx, &group, true)
+
+	for n := range total {
+		fmt.Println("Current:", n)
+	}
 
 	group.Wait()
 
