@@ -2,7 +2,11 @@ package databasemysql
 
 import (
 	"context"
+	"database/sql"
+	"errors"
 	"fmt"
+	"math/rand"
+	"strconv"
 	"testing"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -51,4 +55,96 @@ func TestQuerySql(t *testing.T) {
 		fmt.Println("ID: ", id)
 		fmt.Println("Name: ", name)
 	}
+}
+
+func TestDatatypeSql(t *testing.T) {
+	db := SetConnection()
+	defer db.Close()
+
+	ctx := context.Background()
+
+	payloads := []Customer{
+		{
+			name:      "Agus",
+			email:     "agus@gmail.com",
+			balance:   2322,
+			rating:    sql.NullFloat64{Float64: 23.131, Valid: true},
+			birthdate: "2025-01-01",
+			isMarried: 0,
+		},
+		{
+			name:      "Ahmad",
+			email:     "ahmad@gmail.com",
+			balance:   521,
+			rating:    sql.NullFloat64{Float64: 5.21, Valid: true},
+			birthdate: "2025-01-01",
+			isMarried: 0,
+		},
+	}
+
+	err := Create(ctx, db, &payloads)
+
+	if err != nil {
+		panic(err)
+	}
+}
+
+type Customer struct {
+	id, name, email string
+	balance         int
+	rating          sql.NullFloat64
+	birthdate       string
+	isMarried       int
+	createdAt       string
+}
+
+func TestScanNew(t *testing.T) {
+	db := SetConnection()
+	defer db.Close()
+
+	ctx := context.Background()
+
+	rows, err := db.QueryContext(ctx, "select id, name, email, balance, rating, birthdate, is_married, created_at from customers")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer rows.Close()
+
+	var customers []Customer
+
+	for rows.Next() {
+		var cust Customer
+
+		err := rows.Scan(&cust.id, &cust.name, &cust.email, &cust.balance, &cust.rating, &cust.birthdate, &cust.isMarried, &cust.createdAt)
+		if err != nil {
+			panic(err)
+		}
+
+		customers = append(customers, cust)
+	}
+
+	for _, v := range customers {
+		fmt.Println(v)
+	}
+}
+
+func Create(ctx context.Context, db *sql.DB, payloads *[]Customer) error {
+	if len(*payloads) == 0 {
+		return errors.New("Payloads cannot be empty")
+	}
+
+	for _, val := range *payloads {
+		randomID := strconv.Itoa(rand.Intn(1000))
+		query := "INSERT INTO customers (id, name, email, balance, rating, birthdate, is_married) VALUES (?, ?, ?, ?, ?, ?, ?)"
+
+		_, err := db.ExecContext(ctx, query, randomID, val.name, val.email, val.balance, val.rating, val.birthdate, val.isMarried)
+
+		if err != nil {
+			return errors.New(err.Error())
+		}
+	}
+
+	return nil
 }
