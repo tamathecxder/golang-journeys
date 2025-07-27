@@ -180,3 +180,37 @@ func TestPrepareStmt(t *testing.T) {
 		fmt.Println("Last ID:", lastID)
 	}
 }
+
+func TestDBTransaction(t *testing.T) {
+	db := SetConnection()
+
+	defer db.Close()
+
+	ctx := context.Background()
+
+	tx, err := db.Begin()
+
+	if err != nil {
+		panic(err)
+	}
+
+	for i := 1; i <= 10; i++ {
+		res, err := tx.ExecContext(ctx, "INSERT INTO comments (email, comment) VALUES (?, ?)", "asep@gmail.com", "halo ini asep ("+strconv.Itoa(i)+")")
+
+		if err != nil {
+			tx.Rollback()
+			panic(err)
+		}
+
+		lastID, err := res.LastInsertId()
+
+		if err != nil {
+			tx.Rollback()
+			panic(err)
+		}
+
+		fmt.Println("Last ID:", lastID)
+	}
+
+	tx.Commit()
+}
