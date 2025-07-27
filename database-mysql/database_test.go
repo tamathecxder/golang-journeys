@@ -148,3 +148,35 @@ func Create(ctx context.Context, db *sql.DB, payloads *[]Customer) error {
 
 	return nil
 }
+
+func TestPrepareStmt(t *testing.T) {
+	db := SetConnection()
+
+	defer db.Close()
+
+	ctx := context.Background()
+
+	stmt, err := db.PrepareContext(ctx, "INSERT INTO comments (email, comment) VALUES (?, ?)")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer stmt.Close()
+
+	for i := 1; i <= 10; i++ {
+		res, err := stmt.ExecContext(ctx, "asep@gmail.com", "halo ini asep ("+strconv.Itoa(i)+")")
+
+		if err != nil {
+			panic(err)
+		}
+
+		lastID, err := res.LastInsertId()
+
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println("Last ID:", lastID)
+	}
+}
