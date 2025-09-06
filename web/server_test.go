@@ -36,3 +36,26 @@ func TestHandler(t *testing.T) {
 		panic(err)
 	}
 }
+
+func TestServeMux(t *testing.T) {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Mikum")
+	})
+
+	mux.HandleFunc("/me", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "gwej")
+	})
+
+	server := http.Server{
+		Addr:    ADDR,
+		Handler: mux,
+	}
+
+	err := server.ListenAndServe()
+
+	if err != nil {
+		panic(err)
+	}
+}
