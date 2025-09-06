@@ -15,7 +15,7 @@ func PrintHeader(w http.ResponseWriter, r *http.Request) {
 
 func TestHeader(t *testing.T) {
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest(http.MethodPost, "http://localhost:8080", nil)
+	r := httptest.NewRequest(http.MethodPost, BASE_URL, nil)
 
 	r.Header.Add("X-Author", "gwej")
 

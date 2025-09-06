@@ -13,7 +13,7 @@ func DummyHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func TestHttp(t *testing.T) {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost:8080", nil)
+	req := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
 	recorder := httptest.NewRecorder()
 
 	DummyHandler(recorder, req)

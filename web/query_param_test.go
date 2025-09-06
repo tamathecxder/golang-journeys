@@ -9,8 +9,6 @@ import (
 	"testing"
 )
 
-const BaseURL string = "http://localhost:8080"
-
 func HandleSearch(w http.ResponseWriter, r *http.Request) string {
 	keyword := r.URL.Query().Get("keyword")
 
@@ -36,7 +34,7 @@ func HandleMultipleSearch(w http.ResponseWriter, r *http.Request) string {
 func TestQueryParam(t *testing.T) {
 	param := "?keyword=something"
 	recWriter := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, fmt.Sprintf(BaseURL+"/%s", param), nil)
+	req := httptest.NewRequest(http.MethodGet, fmt.Sprintf(BASE_URL+"/%s", param), nil)
 	search := HandleSearch(recWriter, req)
 
 	fmt.Fprint(recWriter, search)
@@ -50,7 +48,7 @@ func TestQueryParam(t *testing.T) {
 func TestMultipleQueryParamValues(t *testing.T) {
 	param := "?keyword=something&keyword=blablabla"
 	recWriter := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, BaseURL+param, nil)
+	req := httptest.NewRequest(http.MethodGet, BASE_URL+param, nil)
 
 	search := HandleMultipleSearch(recWriter, req)
 	fmt.Fprint(recWriter, search)
