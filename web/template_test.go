@@ -9,7 +9,7 @@ import (
 	"text/template"
 )
 
-func RenderHTML(w http.ResponseWriter, r *http.Request) {
+func PrintOutHtml(w http.ResponseWriter, r *http.Request) {
 	tmpl := `<html><body>{{.}}</body></html>`
 	key := "Placeholder"
 
@@ -26,7 +26,39 @@ func TestTemplate(t *testing.T) {
 	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
 	rec := httptest.NewRecorder()
 
-	RenderHTML(rec, r)
+	PrintOutHtml(rec, r)
+
+	body, _ := io.ReadAll(rec.Result().Body)
+
+	fmt.Println(string(body))
+}
+
+func PrintOutHtmlFile(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFiles("./src/index.gohtml"))
+	t.ExecuteTemplate(w, "index.gohtml", "123")
+}
+
+func TestTemplateFile(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
+	rec := httptest.NewRecorder()
+
+	PrintOutHtmlFile(rec, r)
+
+	body, _ := io.ReadAll(rec.Result().Body)
+
+	fmt.Println(string(body))
+}
+
+func PrintOutHtmlGlob(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseGlob("./src/*.gohtml"))
+	t.ExecuteTemplate(w, "index.gohtml", "123")
+}
+
+func TestTemplateGlob(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
+	rec := httptest.NewRecorder()
+
+	PrintOutHtmlGlob(rec, r)
 
 	body, _ := io.ReadAll(rec.Result().Body)
 
