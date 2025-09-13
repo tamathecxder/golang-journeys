@@ -1,6 +1,7 @@
 package web
 
 import (
+	"embed"
 	"fmt"
 	"io"
 	"net/http"
@@ -59,6 +60,25 @@ func TestTemplateGlob(t *testing.T) {
 	rec := httptest.NewRecorder()
 
 	PrintOutHtmlGlob(rec, r)
+
+	body, _ := io.ReadAll(rec.Result().Body)
+
+	fmt.Println(string(body))
+}
+
+//go:embed src/*.gohtml
+var goHTMLDir embed.FS
+
+func PrintOutHtmlEmbed(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFS(goHTMLDir, "src/*.gohtml"))
+	t.ExecuteTemplate(w, "index.gohtml", "123")
+}
+
+func TestTemplateEmbed(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
+	rec := httptest.NewRecorder()
+
+	PrintOutHtmlEmbed(rec, r)
 
 	body, _ := io.ReadAll(rec.Result().Body)
 
