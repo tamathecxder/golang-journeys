@@ -84,3 +84,46 @@ func TestTemplateEmbed(t *testing.T) {
 
 	fmt.Println(string(body))
 }
+
+func PrintOutHtmlData(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFS(goHTMLDir, "src/*.gohtml"))
+	t.ExecuteTemplate(w, "index.gohtml", map[string]any{
+		"Title":   "Mikum",
+		"Heading": "Kumsalam",
+	})
+}
+
+func TestTemplateData(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
+	rec := httptest.NewRecorder()
+
+	PrintOutHtmlData(rec, r)
+
+	body, _ := io.ReadAll(rec.Result().Body)
+
+	fmt.Println(string(body))
+}
+
+type Page struct {
+	Title   string
+	Heading string
+}
+
+func PrintOutHtmlStruct(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFS(goHTMLDir, "src/*.gohtml"))
+	t.ExecuteTemplate(w, "index.gohtml", Page{
+		Title:   "Testing",
+		Heading: "Testing 123",
+	})
+}
+
+func TestTemplateStruct(t *testing.T) {
+	r := httptest.NewRequest(http.MethodGet, BASE_URL, nil)
+	rec := httptest.NewRecorder()
+
+	PrintOutHtmlStruct(rec, r)
+
+	body, _ := io.ReadAll(rec.Result().Body)
+
+	fmt.Println(string(body))
+}
