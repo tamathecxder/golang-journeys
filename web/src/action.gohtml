@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Action</title>
+</head>
+<body>
+    {{/* Example */}}
+
+    {{if ge .Age 21 }}
+    <p>{{.Name}} is an adult</p>
+    {{else if ge .Age 12 }}
+    <p>{{.Name}} is a teenager</p>
+    {{else }}
+    <p>{{.Name}} is a child</p>
+    {{end}}
+
+    <ul>
+        {{range $i, $hobby := .Hobbies}}
+        <li>{{$hobby}}</li>
+        {{else}}
+        <li>{{.Name}} doesn't have a hobbies</li>
+        {{end}}
+    </ul>
+
+    {{with .WorkExperience.Detail}}
+    <section>
+        <p>Compamy Name: {{.CompanyName}}</p>
+        <p>Role: {{.Role}}</p>
+        <p>Is Resigned: {{.IsResigned}}</p>
+    </section>
+    {{end}}
+</body>
+</html>
